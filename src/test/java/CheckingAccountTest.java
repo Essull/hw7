@@ -29,6 +29,18 @@ public class CheckingAccountTest {
     	acct.withdraw(50);
     	assertThat("Balance should be 0.0", acct.getBalance(), is(0.0));
 
+        acct.withdraw(50);
+    	assertThat("Balance should be -50.0", acct.getBalance(), is(-50.0));
+
+    }
+
+    @Test
+    public void testDeposit() throws Exception{
+        acct.deposit(100);
+        assertThat("Balance should be 50.0", acct.getBalance(), is(50.0));
+
+        acct.deposit(50);
+        assertThat("Balance should be 100.0", acct.getBalance(), is(100.0));
     }
 
     @Test

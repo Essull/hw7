@@ -5,6 +5,7 @@ import org.junit.internal.TextListener;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+import java.util.Scanner;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class CheckingAccountTestFixture {
     public static Logger logger = LogManager.getLogger(CheckingAccountTestFixture.class);
     // TODO We should probably read the file from classpath instead of hardcoding the pathname
-    static final String TEST_FILE = "src/test/resources/CheckingAccountTest.csv";
+    static String TEST_FILE = "src/test/resources/CheckingAccountTest.csv";
 
     record TestScenario(double initBalance,
                         List<Double> checks,
@@ -126,6 +127,8 @@ public class CheckingAccountTestFixture {
 
     public static void main(String [] args) throws IOException {
         System.out.println("START");
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNextLine()) TEST_FILE = sc.nextLine();
 
         // We can:
         // ... manually populate the list of scenarios we want to test...
