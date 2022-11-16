@@ -30,4 +30,6 @@ _TODO_
 
 Source for diagram: [uml_entity.puml](uml_entity.puml)
 
+running gradle tests should run the tests for savings as well
+
 

@@ -54,20 +54,31 @@ public class SavingsAccountTestFixture {
 
             // set up account with specified starting balance and interest rate
             // TODO: Add code to create account....
+                SavingsAccount sa = new SavingsAccount("test "+testNum, scenario.initBalance,10.0, new Owner("TEST_"+testNum));
 
             // now process withdrawals, deposits
             // TODO: Add code to process withdrawals....
+            for (double withdrawalAmount : scenario.withdrawals) {
+                sa.withdraw(withdrawalAmount);
+            }
+            for (double depositAmount : scenario.deposits) {
+                sa.deposit(depositAmount);
+            }
 
             // TODO: Add code to process deposits
 
             // run month-end if desired and output register
             if (scenario.runMonthEndNTimes > 0) {
                 // TODO: Add code to run month-end....
+                for(int i = 0; i<scenario.runMonthEndNTimes;i++){
+                    sa.monthEnd();
+                }
+                
             }
 
             // make sure the balance is correct
             // TODO: add code to verify balance
-
+            assertThat("SA works out", sa.getBalance(), is(110));
         }
     }
 
@@ -106,7 +117,7 @@ public class SavingsAccountTestFixture {
         List<Double> wds = parseListOfAmounts(scenarioValues[2]);
         // TODO: Replace dummy values with your field values to populate TestScenario object
         TestScenario scenario = new TestScenario(
-                initialBalance, 0.0, null, null, 0, 0.0
+                initialBalance, 2.0, wds, wds, 0, 0.0
         );
         return scenario;
     }
